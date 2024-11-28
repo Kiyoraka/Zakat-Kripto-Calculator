@@ -1,4 +1,4 @@
-
+/* Title styles */
 .title-gradient {
     background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
     -webkit-background-clip: text;
@@ -15,7 +15,32 @@
     margin: 0 20px;
 }
 
-/* Carousel transitions */
+/* Carousel styles */
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
 .carousel-inner {
+    display: flex;
     transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-item {
+    width: 100%;
+    height: 100%;
+    flex: 0 0 100%;
+}
+
+.progress-bar {
+    transition: width 0.5s ease-in-out;
+}
+
+/* Ensure images don't exceed container */
+.carousel-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
