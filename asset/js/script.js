@@ -5,11 +5,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Carousel configuration
+// Carousel configuration with content
 const carouselImages = [
-    { src: '/asset/img/Dalil1.jpg' },
-    { src: '/asset/img/Dalil2.jpg' },
-    { src: '/asset/img/Dalil3.jpg' }
+    { 
+        src: '/asset/img/dalil.jpg',
+        title: 'DALIL PERTAMA',
+        ayat: 'وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ',
+        surah: 'Al-Baqarah: 43',
+        maksud: 'Dan dirikanlah solat, tunaikanlah zakat, dan rukuklah bersama orang yang rukuk.'
+    },
+    { 
+        src: '/asset/img/dalil.jpg',
+        title: 'DALIL KEDUA',
+        ayat: 'خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ وَتُزَكِّيهِمْ بِهَا',
+        surah: 'At-Taubah: 103',
+        maksud: 'Ambillah zakat dari sebagian harta mereka, dengan zakat itu kamu membersihkan dan mensucikan mereka.'
+    },
+    { 
+        src: '/asset/img/dalil.jpg',
+        title: 'DALIL KETIGA',
+        ayat: 'وَآتُوا حَقَّهُ يَوْمَ حَصَادِهِ',
+        surah: 'Al-An\'am: 141',
+        maksud: 'Dan tunaikanlah haknya (zakatnya) pada hari memetik hasilnya.'
+    }
 ];
 
 let currentImageIndex = 0;
@@ -20,13 +38,11 @@ function initCarousel() {
     const carouselInner = document.querySelector('.carousel-inner');
     if (!carouselInner) return;
 
-    // Clear existing content
     carouselInner.innerHTML = '';
 
-    // Add images
     carouselImages.forEach((image, index) => {
         const div = document.createElement('div');
-        div.className = 'carousel-item w-full h-full flex-shrink-0';
+        div.className = 'carousel-item w-full h-full flex-shrink-0 relative';
         div.innerHTML = `
             <img 
                 src="${image.src}" 
@@ -34,6 +50,12 @@ function initCarousel() {
                 class="w-full h-full object-cover"
                 onerror="this.src='asset/img/placeholder.jpg';"
             >
+            <div class="absolute inset-0 bg-opacity-0 p-8 flex flex-col items-center justify-center">
+                <h3 class="text-2xl font-bold text-green-900 mb-6">${image.title}</h3>
+                <p class="text-xl mb-4 text-center font-arabic text-gray-1500" dir="rtl">${image.ayat}</p>
+                <p class="text-sm mb-4 font-bold italic text-gray-900">${image.surah}</p>
+                <p class="text-base font-bold text-center text-gray-900">${image.maksud}</p>
+            </div>
         `;
         carouselInner.appendChild(div);
     });
@@ -42,6 +64,20 @@ function initCarousel() {
     startAutoplay();
     updateProgressBar();
 }
+
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
+    @font-face {
+        font-family: 'Amiri';
+        src: url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+    }
+    .font-arabic {
+        font-family: 'Amiri', serif;
+        font-size: 2rem;
+        line-height: 1.8;
+    }
+`;
+document.head.appendChild(styleSheet);
 
 // Update carousel position
 function updateCarousel() {
