@@ -8,21 +8,21 @@ document.addEventListener('DOMContentLoaded', () => {
 // Carousel configuration with content
 const carouselImages = [
     { 
-        src: '/asset/img/dalil.jpg',
+        src: './asset/img/dalil.jpg',
         title: 'DALIL PERTAMA',
         ayat: 'وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ',
         surah: 'Al-Baqarah: 43',
         maksud: 'Dan dirikanlah solat, tunaikanlah zakat, dan rukuklah bersama orang yang rukuk.'
     },
     { 
-        src: '/asset/img/dalil.jpg',
+        src: './asset/img/dalil.jpg',
         title: 'DALIL KEDUA',
         ayat: 'خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ وَتُزَكِّيهِمْ بِهَا',
         surah: 'At-Taubah: 103',
         maksud: 'Ambillah zakat dari sebagian harta mereka, dengan zakat itu kamu membersihkan dan mensucikan mereka.'
     },
     { 
-        src: '/asset/img/dalil.jpg',
+        src: './asset/img/dalil.jpg',
         title: 'DALIL KETIGA',
         ayat: 'وَآتُوا حَقَّهُ يَوْمَ حَصَادِهِ',
         surah: 'Al-An\'am: 141',
