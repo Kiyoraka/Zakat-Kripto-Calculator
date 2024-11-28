@@ -1,40 +1,82 @@
 // Initialize Lucide icons
 lucide.createIcons();
 
-// Sample data - In a real application, this would come from your backend
-const portfolioData = {
-    totalValue: 25000.00,
-    zakatAmount: 625.00, // 2.5% of total value
-    nextDueDate: '2024-12-25'
-};
+// Carousel configuration
+const carouselImages = [
+    { src: 'images/dalil1.jpg', caption: 'Al-Quran Surah At-Taubah ayat 103' },
+    { src: 'images/dalil2.jpg', caption: 'Hadits Bukhari tentang Zakat' },
+    { src: 'images/dalil3.jpg', caption: 'Ijma Ulama tentang Zakat' }
+];
 
-// Update dashboard values
-function updateDashboard() {
-    document.getElementById('portfolioValue').textContent = 
-        `$${portfolioData.totalValue.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
-    
-    document.getElementById('estimatedZakat').textContent = 
-        `$${portfolioData.zakatAmount.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
-    
-    document.getElementById('nextZakat').textContent = 
-        new Date(portfolioData.nextDueDate).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
+let currentImageIndex = 0;
+
+// Initialize carousel
+function initCarousel() {
+    const carouselInner = document.querySelector('.carousel-inner');
+    carouselImages.forEach((image, index) => {
+        const div = document.createElement('div');
+        div.className = 'carousel-item w-full flex-shrink-0';
+        div.innerHTML = `
+            <img src="${image.src}" alt="Dalil ${index + 1}" class="w-full h-64 object-cover">
+            <div class="p-4 bg-white">
+                <p class="text-gray-700">${image.caption}</p>
+            </div>
+        `;
+        carouselInner.appendChild(div);
+    });
+    updateCarousel();
 }
 
-// Add click event listeners to navigation items
+// Update carousel position
+function updateCarousel() {
+    const carouselInner = document.querySelector('.carousel-inner');
+    carouselInner.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+}
+
+// Carousel navigation
+document.getElementById('prevBtn').addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
+    updateCarousel();
+});
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+    updateCarousel();
+});
+
+// Page navigation
 document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        // Remove active class from all links
+        const pageId = link.getAttribute('data-page');
+        
+        // Update active nav item
         document.querySelectorAll('nav a').forEach(l => 
             l.classList.remove('bg-gray-100'));
-        // Add active class to clicked link
         link.classList.add('bg-gray-100');
+        
+        // Show selected page
+        document.querySelectorAll('.page').forEach(page => 
+            page.classList.add('hidden'));
+        document.getElementById(`${pageId}-page`).classList.remove('hidden');
     });
 });
 
-// Initialize dashboard
-updateDashboard();
+// Zakat Calculator
+document.getElementById('zakat-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const cryptoValue = parseFloat(document.getElementById('crypto-value').value);
+    const zakatAmount = cryptoValue * 0.025; // 2.5% zakat rate
+    
+    const resultDiv = document.getElementById('result');
+    const zakatAmountEl = document.getElementById('zakat-amount');
+    
+    resultDiv.classList.remove('hidden');
+    zakatAmountEl.textContent = `$${zakatAmount.toFixed(2)}`;
+});
+
+// Initialize carousel on load
+initCarousel();
+
+// Show default page (Dalil Zakat)
+document.querySelector('[data-page="dalil"]').classList.add('bg-gray-100');
