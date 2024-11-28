@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakat Kripto</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+    <div class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg">
+        <!-- Logo/Title Section -->
+        <div class="p-6 border-b">
+            <h1 class="text-2xl font-bold text-primary">Zakat Kripto</h1>
+        </div>
+        
+        <!-- Navigation Menu -->
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li>
+                    <a href="#" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i data-lucide="home" class="w-5 h-5 mr-3"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i data-lucide="wallet" class="w-5 h-5 mr-3"></i>
+                        <span>Portfolio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i data-lucide="calculator" class="w-5 h-5 mr-3"></i>
+                        <span>Calculate Zakat</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i data-lucide="settings" class="w-5 h-5 mr-3"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i data-lucide="help-circle" class="w-5 h-5 mr-3"></i>
+                        <span>Help</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="ml-64 p-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-800">Welcome to Zakat Kripto</h2>
+            <p class="text-gray-600 mt-2">Calculate and manage your crypto zakat obligations</p>
+        </div>
+
+        <!-- Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dashboard Cards -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="text-lg font-semibold mb-2">Total Portfolio Value</h3>
+                <p class="text-2xl font-bold" id="portfolioValue">$0.00</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="text-lg font-semibold mb-2">Estimated Zakat</h3>
+                <p class="text-2xl font-bold" id="estimatedZakat">$0.00</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="text-lg font-semibold mb-2">Next Zakat Due</h3>
+                <p class="text-2xl font-bold" id="nextZakat">-</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
