@@ -28,10 +28,11 @@
     height: 100%;
 }
 
-.carousel-item {
+.carousel-item img {
     width: 100%;
     height: 100%;
-    flex: 0 0 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .progress-bar {
@@ -44,3 +45,11 @@
     display: block;
 }
 
+/* Page transitions */
+.page {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page.hidden {
+    display: none;
+}

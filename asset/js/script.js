@@ -1,3 +1,5 @@
+// script.js
+
 // Initialize Lucide icons
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') {
@@ -18,7 +20,7 @@ let autoplayInterval;
 // Initialize carousel
 function initCarousel() {
     const carouselInner = document.querySelector('.carousel-inner');
-    if (!carouselInner) return; // Guard clause if element doesn't exist
+    if (!carouselInner) return;
 
     // Clear existing content
     carouselInner.innerHTML = '';
@@ -26,12 +28,12 @@ function initCarousel() {
     // Add images
     carouselImages.forEach((image, index) => {
         const div = document.createElement('div');
-        div.className = 'carousel-item w-full h-full flex-shrink-0 relative';
+        div.className = 'carousel-item w-full h-full flex-shrink-0';
         div.innerHTML = `
             <img 
                 src="${image.src}" 
                 alt="Dalil ${index + 1}" 
-                class="w-full h-full object-contain"
+                class="w-full h-full object-cover"
                 onerror="this.src='asset/img/placeholder.jpg';"
             >
         `;
@@ -63,11 +65,11 @@ function updateProgressBar() {
 
 // Autoplay functionality
 function startAutoplay() {
-    stopAutoplay(); // Clear any existing interval
+    stopAutoplay();
     autoplayInterval = setInterval(() => {
         currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
         updateCarousel();
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
 }
 
 function stopAutoplay() {
@@ -76,36 +78,72 @@ function stopAutoplay() {
     }
 }
 
-// Event Listeners
-document.getElementById('prevBtn')?.addEventListener('click', () => {
-    currentImageIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
-    updateCarousel();
-    stopAutoplay();
-    startAutoplay(); // Reset autoplay timer
-});
+// Page navigation
+function initializePageNavigation() {
+    const pages = document.querySelectorAll('.page');
+    const navLinks = document.querySelectorAll('[page]');
 
-document.getElementById('nextBtn')?.addEventListener('click', () => {
-    currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
-    updateCarousel();
-    stopAutoplay();
-    startAutoplay(); // Reset autoplay timer
-});
+    function showPage(pageId) {
+        // Hide all pages
+        pages.forEach(page => {
+            page.classList.add('hidden');
+        });
 
-// Handle keyboard navigation
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-        document.getElementById('prevBtn')?.click();
-    } else if (e.key === 'ArrowRight') {
-        document.getElementById('nextBtn')?.click();
+        // Show selected page
+        const selectedPage = document.getElementById(`${pageId}-page`);
+        if (selectedPage) {
+            selectedPage.classList.remove('hidden');
+        }
+
+        // Update navigation state
+        navLinks.forEach(link => {
+            if (link.getAttribute('page') === pageId) {
+                link.classList.add('bg-green-50', 'text-green-700');
+            } else {
+                link.classList.remove('bg-green-50', 'text-green-700');
+            }
+        });
     }
-});
 
-// Initialize everything else...
-// (Your existing page navigation and calculator code here)
+    // Add click handlers to navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const pageId = link.getAttribute('page');
+            showPage(pageId);
+        });
+    });
 
-// Initialize carousel when DOM is loaded
+    // Show default page
+    showPage('dalil');
+}
+
+// Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     initCarousel();
-    // Show default page (Dalil Zakat)
-    document.querySelector('[data-page="dalil"]')?.classList.add('bg-gray-100');
+    initializePageNavigation();
+    
+    // Carousel navigation buttons
+    document.getElementById('prevBtn')?.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
+        updateCarousel();
+        stopAutoplay();
+        startAutoplay();
+    });
+
+    document.getElementById('nextBtn')?.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+        updateCarousel();
+        stopAutoplay();
+        startAutoplay();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            document.getElementById('prevBtn')?.click();
+        } else if (e.key === 'ArrowRight') {
+            document.getElementById('nextBtn')?.click();
+        }
+    });
 });
