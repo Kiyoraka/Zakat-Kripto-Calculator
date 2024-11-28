@@ -149,6 +149,3 @@ This calculator is for reference purposes only. Users should consult with their 
 
 For support, please open an issue in the [GitHub repository](https://github.com/kiyoraka/Zakat-Kripto-Calculator/issues)
 
----
-
-Created with ❤️ for the Muslim Ummah
