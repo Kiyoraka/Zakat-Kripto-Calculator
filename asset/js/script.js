@@ -119,7 +119,7 @@ function initializePageNavigation() {
 }
 
 // Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     initCarousel();
     initializePageNavigation();  // Initialize page navigation
 
@@ -137,13 +137,28 @@ document.addEventListener('DOMContentLoaded', () => {
         stopAutoplay();
         startAutoplay();
     });
+
+
+    // Fetch gold price when page loads
+    await fetchGoldPrice();
+    
+    // Add form submit handler
+    const zakatForm = document.getElementById('zakatForm');
+    if (zakatForm) {
+        zakatForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            await fetchGoldPrice(); // Fetch latest gold price before calculation
+            calculateZakat();
+        });
+    }
 });
 
-// Constants for Zakat Calculator
 
-// Gold price fetching functionality
-let GOLD_PRICE_PER_GRAM = 280; // Default value
+// Constants for Zakat Calculator
+let GOLD_PRICE_PER_GRAM = 410; // Current market price
 let NISAB_THRESHOLD = GOLD_PRICE_PER_GRAM * 85;
+const ZAKAT_RATE = 0.025; // 2.5%
+const MIN_HOLDING_DAYS = 365;
 
 async function fetchGoldPrice() {
     try {
@@ -154,28 +169,19 @@ async function fetchGoldPrice() {
         }
 
         const data = await response.json();
+        console.log('Gold API Response:', data); // Debug log
         
-        // The API returns price in USD per troy ounce
-        // Convert to MYR per gram (approximate conversion rate: 1 USD = 4.70 MYR)
-        // 1 troy ounce = 31.1034768 grams
-        const priceInMYR = data.price * 4.70; // Convert USD to MYR
-        GOLD_PRICE_PER_GRAM = priceInMYR / 31.1034768; // Convert per ounce to per gram
+        const usdPrice = data.price;
+        const usdToMYR = 4.70;
+        const troyOunceToGrams = 31.1034768;
         
-        // Update nisab threshold
+        GOLD_PRICE_PER_GRAM = (usdPrice * usdToMYR) / troyOunceToGrams;
         NISAB_THRESHOLD = GOLD_PRICE_PER_GRAM * 85;
         
-        // Update UI
         updateGoldPriceDisplay();
-        
         return GOLD_PRICE_PER_GRAM;
     } catch (error) {
         console.error('Error fetching gold price:', error);
-        // Show error in UI
-        document.getElementById('goldPriceIndicator').innerHTML = `
-            <span class="text-yellow-800">
-                Menggunakan harga emas default: RM ${GOLD_PRICE_PER_GRAM.toFixed(2)}/gram
-            </span>
-        `;
         return GOLD_PRICE_PER_GRAM;
     }
 }
@@ -195,11 +201,6 @@ function updateGoldPriceDisplay() {
         nisabEl.textContent = `RM ${NISAB_THRESHOLD.toFixed(2)} (85 gram emas)`;
     }
 }
-
-
-
-const ZAKAT_RATE = 0.025; // 2.5%
-const MIN_HOLDING_DAYS = 365;
 
 // Form handling
 document.addEventListener('DOMContentLoaded', () => {
@@ -270,7 +271,7 @@ function updateZakatInfo(isEligible, status, explanation, holdingPeriod, GOLD_PR
 
     // Update calculation details
     document.getElementById('ownershipPeriod').textContent = `${holdingPeriod} hari`;
-    document.getElementById('currentGoldPrice').textContent = `RM ${GOLD_PRICE_PER_GRAM}`;
+    document.getElementById('currentGoldPrice').textContent = `RM ${GOLD_PRICE_PER_GRAM.toFixed(2)}/gram`;
     document.getElementById('currentNisab').textContent = `RM ${NISAB_THRESHOLD.toFixed(2)} (85 gram emas)`;
 }
 
