@@ -140,8 +140,64 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Constants for Zakat Calculator
-const GOLD_PRICE_PER_GRAM = 280; // Example: RM 280 per gram (you should update this regularly)
-const NISAB_THRESHOLD = GOLD_PRICE_PER_GRAM * 85; // 85 grams of gold
+
+// Gold price fetching functionality
+let GOLD_PRICE_PER_GRAM = 280; // Default value
+let NISAB_THRESHOLD = GOLD_PRICE_PER_GRAM * 85;
+
+async function fetchGoldPrice() {
+    try {
+        const response = await fetch('https://api.gold-api.com/price/XAU');
+        
+        if (!response.ok) {
+            throw new Error('Failed to fetch gold price');
+        }
+
+        const data = await response.json();
+        
+        // The API returns price in USD per troy ounce
+        // Convert to MYR per gram (approximate conversion rate: 1 USD = 4.70 MYR)
+        // 1 troy ounce = 31.1034768 grams
+        const priceInMYR = data.price * 4.70; // Convert USD to MYR
+        GOLD_PRICE_PER_GRAM = priceInMYR / 31.1034768; // Convert per ounce to per gram
+        
+        // Update nisab threshold
+        NISAB_THRESHOLD = GOLD_PRICE_PER_GRAM * 85;
+        
+        // Update UI
+        updateGoldPriceDisplay();
+        
+        return GOLD_PRICE_PER_GRAM;
+    } catch (error) {
+        console.error('Error fetching gold price:', error);
+        // Show error in UI
+        document.getElementById('goldPriceIndicator').innerHTML = `
+            <span class="text-yellow-800">
+                Menggunakan harga emas default: RM ${GOLD_PRICE_PER_GRAM.toFixed(2)}/gram
+            </span>
+        `;
+        return GOLD_PRICE_PER_GRAM;
+    }
+}
+
+function updateGoldPriceDisplay() {
+    const indicatorEl = document.getElementById('goldPriceIndicator');
+    if (indicatorEl) {
+        indicatorEl.innerHTML = `
+            <span>Harga Emas Semasa: RM ${GOLD_PRICE_PER_GRAM.toFixed(2)}/gram</span>
+            <span class="text-sm text-gray-600 ml-2">(Nisab: RM ${NISAB_THRESHOLD.toFixed(2)})</span>
+        `;
+    }
+
+    // Update nisab display in info box if it exists
+    const nisabEl = document.getElementById('currentNisab');
+    if (nisabEl) {
+        nisabEl.textContent = `RM ${NISAB_THRESHOLD.toFixed(2)} (85 gram emas)`;
+    }
+}
+
+
+
 const ZAKAT_RATE = 0.025; // 2.5%
 const MIN_HOLDING_DAYS = 365;
 
