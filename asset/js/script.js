@@ -3,9 +3,9 @@ lucide.createIcons();
 
 // Carousel configuration
 const carouselImages = [
-    { src: 'images/dalil1.jpg', caption: 'Al-Quran Surah At-Taubah ayat 103' },
-    { src: 'images/dalil2.jpg', caption: 'Hadits Bukhari tentang Zakat' },
-    { src: 'images/dalil3.jpg', caption: 'Ijma Ulama tentang Zakat' }
+    { src: 'img/dalil1.jpg', caption: 'Test 1' },
+    { src: 'img/dalil2.jpg', caption: 'Test 2' },
+    { src: 'img/dalil3.jpg', caption: 'Test 3' }
 ];
 
 let currentImageIndex = 0;
