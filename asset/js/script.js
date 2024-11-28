@@ -1,5 +1,3 @@
-// script.js
-
 // Initialize Lucide icons
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') {
@@ -78,26 +76,28 @@ function stopAutoplay() {
     }
 }
 
-// Page navigation
+// Page Navigation
 function initializePageNavigation() {
     const pages = document.querySelectorAll('.page');
-    const navLinks = document.querySelectorAll('[page]');
+    const navLinks = document.querySelectorAll('[data-page]');  // Updated selector
 
     function showPage(pageId) {
         // Hide all pages
         pages.forEach(page => {
             page.classList.add('hidden');
+            page.classList.remove('active');
         });
 
         // Show selected page
         const selectedPage = document.getElementById(`${pageId}-page`);
         if (selectedPage) {
             selectedPage.classList.remove('hidden');
+            selectedPage.classList.add('active');
         }
 
         // Update navigation state
         navLinks.forEach(link => {
-            if (link.getAttribute('page') === pageId) {
+            if (link.getAttribute('data-page') === pageId) {  // Updated attribute check
                 link.classList.add('bg-green-50', 'text-green-700');
             } else {
                 link.classList.remove('bg-green-50', 'text-green-700');
@@ -109,20 +109,20 @@ function initializePageNavigation() {
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const pageId = link.getAttribute('page');
+            const pageId = link.getAttribute('data-page');  // Updated attribute
             showPage(pageId);
         });
     });
 
-    // Show default page
+    // Show default page on load
     showPage('dalil');
 }
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     initCarousel();
-    initializePageNavigation();
-    
+    initializePageNavigation();  // Initialize page navigation
+
     // Carousel navigation buttons
     document.getElementById('prevBtn')?.addEventListener('click', () => {
         currentImageIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
@@ -136,14 +136,5 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCarousel();
         stopAutoplay();
         startAutoplay();
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            document.getElementById('prevBtn')?.click();
-        } else if (e.key === 'ArrowRight') {
-            document.getElementById('nextBtn')?.click();
-        }
     });
 });
