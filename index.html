@@ -4,93 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zakat Kripto</title>
-    <!-- Add Lucide Icons library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
-    <!-- Add css library -->
+    
+    <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com/3.4.0"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="asset/css/styles.css">
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
     <!-- Sidebar -->
-    <div class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg">
-        <div class="p-6 border-b bg-gradient-to-r from-green-800 to-green-600">
-            <h1 class="text-2xl font-bold text-white">Zakat Kripto</h1>
+    <div class="fixed left-0 top-0 h-full w-72 bg-white shadow-lg">
+        <!-- Sidebar Header -->
+        <div class="p-8 border-b bg-gradient-to-r from-green-800 to-green-600">
+            <h1 class="text-3xl font-bold text-white tracking-tight">Zakat Kripto</h1>
+            <p class="text-green-50 mt-2 text-sm">Calculate Your Crypto Zakat</p>
         </div>
-        
-        <nav class="p-4">
-            <ul class="space-y-2">
-                <li>
-                    <a href="#" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-green-50" data-page="dalil">
-                        <i data-lucide="book-open" class="w-5 h-5 mr-3"></i>
-                        <span>Dalil Zakat</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-green-50" data-page="syarat">
-                        <i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>
-                        <span>Syarat Zakat</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-green-50" data-page="calculator">
-                        <i data-lucide="calculator" class="w-5 h-5 mr-3"></i>
-                        <span>Calculate Zakat</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center p-3 text-gray-700 rounded-lg hover:bg-green-50" data-page="help">
-                        <i data-lucide="help-circle" class="w-5 h-5 mr-3"></i>
-                        <span>Help</span>
-                    </a>
-                </li>
-            </ul>
+
+        <!-- Navigation Links -->
+        <nav class="p-4 space-y-2">
+            <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 transition-all hover:text-green-700 font-medium" data-page="dalil">
+                <i data-lucide="book-open" class="w-5 h-5 mr-3"></i>
+                Dalil Zakat
+            </a>
+            <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 transition-all hover:text-green-700 font-medium" data-page="syarat">
+                <i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>
+                Syarat Zakat
+            </a>
+            <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 transition-all hover:text-green-700 font-medium" data-page="calculator">
+                <i data-lucide="calculator" class="w-5 h-5 mr-3"></i>
+                Calculate Zakat
+            </a>
+            <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-green-50 transition-all hover:text-green-700 font-medium" data-page="help">
+                <i data-lucide="help-circle" class="w-5 h-5 mr-3"></i>
+                Help
+            </a>
         </nav>
+
+        <!-- Footer -->
+        <div class="absolute bottom-0 left-0 right-0 p-6 border-t">
+            <p class="text-sm text-gray-500 text-center">Version 1.0.0</p>
+        </div>
     </div>
 
-    <!-- Main Content Area -->
-    <div class="ml-64 p-8">
-        <!-- Dalil Zakat Page -->
+    <!-- Main Content -->
+    <div class="ml-72 p-8">
+        <!-- Dalil Page -->
         <div id="dalil-page" class="page active">
+            <!-- Page Title -->
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Dalil Zakat dalam Islam</h2>
-                <div class="w-24 h-1 bg-green-500 mx-auto"></div>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    Dalil Zakat
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-green-800 to-green-600 mx-auto rounded-full"></div>
             </div>
-            
-            <!-- Carousel Container -->
+
+            <!-- Carousel Section -->
             <div class="carousel-container relative w-full max-w-4xl mx-auto overflow-hidden">
                 <!-- Progress Bar -->
-                <div class="absolute top-0 left-0 w-full h-1 bg-gray-200 z-10">
-                    <div class="progress-bar h-full bg-green-500 transition-all duration-500"></div>
+                <div class="absolute top-0 left-0 w-full h-1 bg-gray-100 z-10">
+                    <div class="progress-bar h-full bg-gradient-to-r from-green-800 to-green-600 transition-all duration-500"></div>
                 </div>
-                
+
                 <!-- Carousel -->
                 <div class="carousel relative w-full h-[600px]">
-                    <div class="carousel-inner flex transition-transform duration-500 h-full">
-                        <!-- Images will be inserted here by JavaScript -->
-                    </div>
-                    
-                    <!-- Navigation Buttons -->
-                    <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 text-green-600 p-2 rounded-full shadow-lg hover:bg-green-50 transition-colors duration-200 z-10" id="prevBtn">
-                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    <div class="carousel-inner flex transition-transform duration-500 h-full"></div>
+
+                <!-- Navigation Buttons -->
+                <div class="absolute inset-y-0 left-0 flex items-center">
+                    <button id="prevBtn" class="p-3 bg-green-800/50 hover:bg-green-700 text-white rounded-r transition-all">
+                        <span class="text-2xl">←</span>
                     </button>
-                    <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 text-green-600 p-2 rounded-full shadow-lg hover:bg-green-50 transition-colors duration-200 z-10" id="nextBtn">
-                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </div>
+
+                <div class="absolute inset-y-0 right-0 flex items-center">
+                    <button id="nextBtn" class="p-3 bg-green-800/50 hover:bg-green-700 text-white rounded-l transition-all">
+                        <span class="text-2xl">→</span>
                     </button>
+                </div>
                 </div>
             </div>
 
-            <!-- Content -->
-            <div class="mt-8 bg-white p-6 rounded-lg shadow">
-                <h3 class="text-xl font-semibold mb-4">Pengertian Zakat</h3>
-                <p class="text-gray-700 leading-relaxed">
-                    Zakat merupakan salah satu rukun Islam yang wajib ditunaikan bagi setiap Muslim yang memenuhi syarat (nisab dan haul).
-                </p>
+            <!-- Content Section -->
+            <div class="mt-12 max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">
+                        Pengertian Zakat
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Zakat merupakan salah satu rukun Islam yang wajib ditunaikan bagi setiap
+                        Muslim yang memenuhi syarat (nisab dan haul).
+                    </p>
+                </div>
             </div>
         </div>
-
-        <!-- Other pages remain the same but would need similar conversion -->
     </div>
 
+    <!-- Custom JS -->
     <script src="asset/js/script.js"></script>
 </body>
 </html>

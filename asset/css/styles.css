@@ -38,9 +38,9 @@
     transition: width 0.5s ease-in-out;
 }
 
-/* Ensure images don't exceed container */
 .carousel-item img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 100%;
     display: block;
 }
+
