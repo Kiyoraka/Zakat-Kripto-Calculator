@@ -248,10 +248,10 @@ function calculateZakat() {
     }
 
     // Update UI
-    updateZakatInfo(isEligible, statusMessage, explanation, holdingPeriod, zakatAmount);
+    updateZakatInfo(isEligible, statusMessage, explanation, holdingPeriod, GOLD_PRICE_PER_GRAM, zakatAmount);
 }
 
-function updateZakatInfo(isEligible, status, explanation, holdingPeriod, zakatAmount) {
+function updateZakatInfo(isEligible, status, explanation, holdingPeriod, GOLD_PRICE_PER_GRAM, zakatAmount) {
     // Update zakat amount field
     document.getElementById('zakatAmount').value = zakatAmount.toFixed(2);
 
@@ -270,6 +270,7 @@ function updateZakatInfo(isEligible, status, explanation, holdingPeriod, zakatAm
 
     // Update calculation details
     document.getElementById('ownershipPeriod').textContent = `${holdingPeriod} hari`;
+    document.getElementById('currentGoldPrice').textContent = `RM ${GOLD_PRICE_PER_GRAM}`;
     document.getElementById('currentNisab').textContent = `RM ${NISAB_THRESHOLD.toFixed(2)} (85 gram emas)`;
 }
 
