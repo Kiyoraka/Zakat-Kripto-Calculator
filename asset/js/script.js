@@ -1,11 +1,15 @@
 // Initialize Lucide icons
-lucide.createIcons();
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+});
 
 // Carousel configuration
 const carouselImages = [
-    { src: 'img/dalil1.jpg', caption: 'Test 1' },
-    { src: 'img/dalil2.jpg', caption: 'Test 2' },
-    { src: 'img/dalil3.jpg', caption: 'Test 3' }
+    { src: '/asset/img/Dalil1.jpg' },
+    { src: '/asset/img/Dalil2.jpg' },
+    { src: '/asset/img/Dalil3.jpg' }
 ];
 
 let currentImageIndex = 0;
@@ -28,11 +32,8 @@ function initCarousel() {
                 src="${image.src}" 
                 alt="Dalil ${index + 1}" 
                 class="w-full h-full object-contain"
-                onerror="this.src='img/placeholder.jpg';"
+                onerror="this.src='asset/img/placeholder.jpg';"
             >
-            <div class="absolute bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur">
-                <p class="text-gray-700 text-lg">${image.caption}</p>
-            </div>
         `;
         carouselInner.appendChild(div);
     });
