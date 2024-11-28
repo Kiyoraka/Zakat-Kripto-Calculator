@@ -2,7 +2,7 @@
 
 A web-based application for calculating Zakat on cryptocurrency holdings according to Islamic principles. This calculator helps Muslims determine their Zakat obligations for cryptocurrency investments by considering the current gold price, holding period, and nisab threshold.
 
-## Live Demo
+## Live Application
 
 Visit the live application at: [Zakat Kripto Calculator](https://kiyoraka.github.io/Zakat-Kripto-Calculator/)
 
