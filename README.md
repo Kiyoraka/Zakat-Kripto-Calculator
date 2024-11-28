@@ -2,6 +2,10 @@
 
 A web-based application for calculating Zakat on cryptocurrency holdings according to Islamic principles. This calculator helps Muslims determine their Zakat obligations for cryptocurrency investments by considering the current gold price, holding period, and nisab threshold.
 
+## Live Demo
+
+Visit the live application at: [Zakat Kripto Calculator](https://kiyoraka.github.io/Zakat-Kripto-Calculator/)
+
 ## Features
 
 - Real-time gold price fetching for accurate nisab calculation
@@ -9,39 +13,43 @@ A web-based application for calculating Zakat on cryptocurrency holdings accordi
   - Holding period (Haul - 365 days)
   - Minimum threshold (Nisab - equivalent to 85 grams of gold)
 - Multi-page interface with:
-  - Dalil (Evidence) from Islamic sources
+  - Dalil (Evidence) from Islamic sources with Arabic text
   - Syarat (Requirements) for Zakat
   - Calculator interface
   - FAQ/Help section
-- Interactive carousel for educational content
+- Interactive carousel with Islamic references
 - Responsive design for all devices
+- Bilingual interface (Malay)
 
 ## Technical Stack
 
 - HTML5
-- CSS3 with Tailwind CSS
+- CSS3 with Tailwind CSS for styling
 - Vanilla JavaScript
 - Lucide Icons for UI elements
+- GitHub Pages for hosting
 
-## Prerequisites
+## Local Development
 
-- Web server with HTTP support
+### Prerequisites
+
 - Modern web browser with JavaScript enabled
 - Internet connection for gold price API
+- Basic understanding of HTML, CSS, and JavaScript
 
-## Installation
+### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/zakat-crypto-calculator.git
+git clone https://github.com/kiyoraka/Zakat-Kripto-Calculator.git
 ```
 
 2. Navigate to the project directory:
 ```bash
-cd zakat-crypto-calculator
+cd Zakat-Kripto-Calculator
 ```
 
-3. Open index.html in a web browser or deploy to your web server.
+3. Open index.html in a web browser or use a local server.
 
 ## Project Structure
 
@@ -56,6 +64,8 @@ cd zakat-crypto-calculator
 │       ├── Dalil1.jpg
 │       ├── Dalil2.jpg
 │       └── Dalil3.jpg
+├── .github/
+│   └── workflows/         # GitHub Actions workflows
 └── README.md
 ```
 
@@ -77,15 +87,16 @@ The calculator considers several factors:
 - Current gold price for nisab calculation
 - Standard Zakat rate of 2.5%
 
-## Usage
+## Usage Guide
 
-1. Navigate to the Calculator page
-2. Enter your cryptocurrency details:
-   - Initial purchase value
+1. Visit the [Zakat Kripto Calculator](https://kiyoraka.github.io/Zakat-Kripto-Calculator/)
+2. Navigate to "Kalkulator Zakat" page
+3. Enter your cryptocurrency details:
+   - Initial purchase value in MYR
    - Purchase date
-   - Current value
-3. Click "Kira Zakat" to calculate
-4. View detailed results including:
+   - Current value in MYR
+4. Click "Kira Zakat" to calculate
+5. View detailed results including:
    - Eligibility status
    - Required Zakat amount (if eligible)
    - Holding period
@@ -108,12 +119,22 @@ Gold price API settings can be modified in the fetchGoldPrice function:
 const usdToMYR = 4.70; // Update exchange rate as needed
 ```
 
+## Deployment
+
+The application is deployed using GitHub Pages. Any push to the main branch will automatically trigger a deployment through GitHub Actions.
+
+To deploy your own version:
+1. Fork this repository
+2. Enable GitHub Pages in your repository settings
+3. Configure GitHub Actions using the provided workflow
+4. Push changes to your main branch
+
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create your feature branch (`git checkout -b feature/NewFeature`)
+3. Commit your changes (`git commit -m 'Add some NewFeature'`)
+4. Push to the branch (`git push origin feature/NewFeature`)
 5. Open a Pull Request
 
 ## License
@@ -126,7 +147,8 @@ This calculator is for reference purposes only. Users should consult with their 
 
 ## Support
 
-For support, please open an issue in the GitHub repository 
+For support, please open an issue in the [GitHub repository](https://github.com/kiyoraka/Zakat-Kripto-Calculator/issues)
 
 ---
 
+Created with ❤️ for the Muslim Ummah
