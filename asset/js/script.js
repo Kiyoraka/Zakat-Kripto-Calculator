@@ -269,7 +269,7 @@ function calculateZakat() {
     // Check holding period
     if (holdingPeriod < MIN_HOLDING_DAYS) {
         statusMessage = 'Belum Mencukupi Haul';
-        explanation = `Tempoh pemegangan kripto anda adalah ${holdingPeriod} hari. Zakat hanya perlu dibayar selepas tempoh pemegangan melebihi 365 hari.`;
+        explanation = `Tempoh pemilikan kripto anda adalah ${holdingPeriod} hari. Zakat hanya perlu dibayar selepas tempoh pemilikan melebihi 365 hari.`;
     }
     // Check nisab threshold
     else if (currentValue < NISAB_THRESHOLD) {
